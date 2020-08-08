@@ -1,10 +1,25 @@
-const express = require("express");
+const express = require('express');
+const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
 
 const app = express();
 
+//middleware
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+app.use(express.static('public'));
+
+//body-parser
+app.use(bodyParser.urlencoded({extended:false}));
 
 app.get("/",(req,res)=>{
-    res.send("home page")
+    res.render("general/home",{
+        title:'HomePage'
+    })
+});
+
+app.post("/userDashboard",(req,res)=>{
+    res.send(`${req.body.username} , ${req.body.password}`);
 });
 
 app.get("/user/dashboard",(req,res)=>{
