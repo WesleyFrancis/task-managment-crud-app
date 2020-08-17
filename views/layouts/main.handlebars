@@ -14,11 +14,30 @@
             <nav>
                 <a href=""> <h1>Task Mangament App</h1> </a>
                     <ul id="main-menu-links">
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="">Contact Us</a></li>
-                        <li><a href="register.html">Register</a></li>
-                        <li><a href="userDashboard.html">User Dashboard</a></li>
-                        <li><a href="taskDashboard.html">Task Dashboard</a></li>
+                        {{#if localUserInfo}}
+
+                            {{#ifEq localUserInfo.role "user"}}
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/task/dashboard">Task Dashboard</a></li>
+                                 <li><a href="/auth/logout">Logout</a></li>
+                            {{else}}
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/contact-us">Contact Us</a></li>
+                                <li><a href="/admin/dashboard">User Dashboard</a></li>
+                                <li><a href="/auth/logout">Logout</a></li>
+                            {{/ifEq}}
+                        
+                                <div>{{#if localUserInfo}}
+                                    you are logged in as :{{localUserInfo.email}}
+                                    {{/if}}
+                                </div>
+                        {{else}}
+                        <li><a href="/">Home</a></li>
+                            <li><a href="/">Login</a></li>
+                        {{/if}}
+
+
+
                     </ul>
                     <div class="hambuger-menu hide">
                     <div class="bars"></div>
@@ -40,6 +59,6 @@
 
         </footer>
 
-        <script src="../js/app.js"></script>
+        <script src="/js/app.js"></script>
 </body>
 </html>

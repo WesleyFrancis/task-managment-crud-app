@@ -295,3 +295,8 @@ form-control
     height:150px;
     object-fit: cover;
 }
+
+.error{
+    color:red;
+    font-weight: 500;
+}
